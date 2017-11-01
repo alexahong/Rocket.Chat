@@ -237,6 +237,9 @@ jobs:
     #     enabled: true
 
     steps:
+      - attach_workspace:
+          at: /tmp
+
       - checkout
 
       - run:
@@ -249,6 +252,7 @@ jobs:
             curl -O https://bootstrap.pypa.io/get-pip.py
             python3.4 get-pip.py --user
             pip install awscli --upgrade --user
+            export PATH=~/.local/bin:$PATH
 
       - run: |
           # if [[ $CIRCLE_PULL_REQUESTS ]]; then exit 0; fi;
